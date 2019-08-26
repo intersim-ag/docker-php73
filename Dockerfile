@@ -50,4 +50,5 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
     curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
     apt-get update -yqq; \
     ACCEPT_EULA=Y apt-get install -yqq msodbcsql17 unixodbc-dev; \
-    ACCEPT_EULA=Y pecl install pdo_sqlsrv
+    ACCEPT_EULA=Y pecl install pdo_sqlsrv; \
+    docker-php-ext-enable pdo_sqlsrv
