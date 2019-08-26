@@ -44,3 +44,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash \
     && apt-get install -y nodejs \
     && npm install -g gulp-cli
+
+# Install mssql driver
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
+    curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+    apt-get update -yqq; \
+    ACCEPT_EULA=Y apt-get install -yqq msodbcsql17 unixodbc-dev; \
+    ACCEPT_EULA=Y pecl install pdo_sqlsrv
